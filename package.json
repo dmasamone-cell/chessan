@@ -9,14 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react-chessboard": "^4.7.2",
+    "canvas-confetti": "^1.9.4",
     "chess.js": "^0.13.4",
     "lucide-react": "^0.300.0",
     "next": "^14.1.0",
     "react": "^18.2.0",
+    "react-chessboard": "^4.7.2",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.9.0",
     "@types/chess.js": "^0.13.4",
     "@types/node": "^20.11.0",
     "@types/react": "^18.2.0",
