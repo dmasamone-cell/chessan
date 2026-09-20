@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Chess } from 'chess.js';
-import { Chessboard } from '@react-chessboard/react-chessboard';
+import { Chessboard } from 'react-chessboard/react-chessboard';
 import { Search, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface GameItem {
