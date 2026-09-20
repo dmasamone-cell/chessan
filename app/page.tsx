@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Chess } from 'chess.js';
-import { Chessboard } from 'react-chessboard/react-chessboard';
+import { Chessboard } from 'react-chessboard';
 import { Search, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface GameItem {
@@ -185,69 +185,69 @@ export default function Page() {
   }
 
   return (
-    <main className="min-h-screen bg-[#0b0e14] text-slate-100 font-sans p-4">
-      <div className="max-w-md mx-auto space-y-5">
+    <main style={{ minHeight: '100vh', backgroundColor: '#0b0e14', color: '#f8fafc', fontFamily: 'sans-serif', padding: '16px' }}>
+      <div style={{ maxWidth: '420px', margin: '0 auto' }}>
         
         {/* Header */}
-        <header className="flex items-center justify-between pb-3 border-b border-slate-800">
-          <div className="flex items-center gap-2">
-            <span className="text-amber-500 font-black text-xl">♟</span>
-            <h1 className="font-extrabold text-sm tracking-tight text-white">
-              CHESSIGMA <span className="text-amber-500">ANALYZER</span>
+        <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '12px', borderBottom: '1px solid #1e293b', marginBottom: '20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ color: '#f59e0b', fontWeight: 900, fontSize: '20px' }}>♟</span>
+            <h1 style={{ fontWeight: 800, fontSize: '14px', margin: 0, color: '#fff' }}>
+              CHESSIGMA <span style={{ color: '#f59e0b' }}>ANALYZER</span>
             </h1>
           </div>
-          <span className="text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-bold">
+          <span style={{ fontSize: '10px', fontFamily: 'monospace', background: 'rgba(16, 185, 129, 0.1)', color: '#34d399', border: '1px solid rgba(16, 185, 129, 0.2)', padding: '2px 8px', borderRadius: '12px', fontWeight: 'bold' }}>
             NEXT.JS
           </span>
         </header>
 
         {/* Input Form */}
-        <div className="bg-[#121621] border border-slate-800 rounded-2xl p-4 space-y-3">
-          <span className="text-[10px] font-mono font-bold text-amber-500 uppercase tracking-widest block">
+        <div style={{ background: '#121621', border: '1px solid #1e293b', borderRadius: '16px', padding: '16px', marginBottom: '16px' }}>
+          <span style={{ fontSize: '10px', fontFamily: 'monospace', fontWeight: 'bold', color: '#f59e0b', textTransform: 'uppercase', letterSpacing: '1px', display: 'block', marginBottom: '8px' }}>
             Cari Game Chess.com
           </span>
-          <div className="flex gap-2">
+          <div style={{ display: 'flex', gap: '8px' }}>
             <input
               type="text"
               placeholder="Username..."
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs font-semibold text-white focus:outline-none focus:border-amber-500"
+              style={{ flex: 1, background: '#020617', border: '1px solid #1e293b', borderRadius: '12px', padding: '8px 12px', fontSize: '12px', fontWeight: 600, color: '#fff', outline: 'none' }}
             />
             <button
               onClick={fetchGameHistory}
               disabled={loading}
-              className="px-4 py-2 bg-amber-500 text-black font-extrabold text-xs rounded-xl flex items-center gap-1"
+              style={{ padding: '8px 16px', background: '#f59e0b', color: '#000', fontWeight: 800, fontSize: '12px', borderRadius: '12px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
             >
-              <Search className="w-3.5 h-3.5" /> Cari
+              <Search style={{ width: '14px', height: '14px' }} /> Cari
             </button>
           </div>
-          {statusText && <p className="text-xs text-rose-400 italic">{statusText}</p>}
+          {statusText && <p style={{ fontSize: '12px', color: '#fb7185', fontStyle: 'italic', marginTop: '8px' }}>{statusText}</p>}
         </div>
 
         {/* List Game */}
         {games.length > 0 && !selectedGame && (
-          <div className="bg-[#121621] border border-slate-800 rounded-2xl p-4 space-y-3">
-            <span className="text-xs font-bold text-slate-300 block border-b border-slate-800 pb-2">
+          <div style={{ background: '#121621', border: '1px solid #1e293b', borderRadius: '16px', padding: '16px', marginBottom: '16px' }}>
+            <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#cbd5e1', display: 'block', borderBottom: '1px solid #1e293b', paddingBottom: '8px', marginBottom: '12px' }}>
               10 Match Terbaru
             </span>
-            <div className="space-y-2">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {games.map((g, idx) => {
                 const isWhite = g.white.username.toLowerCase() === username.toLowerCase();
                 const myData = isWhite ? g.white : g.black;
                 const opponent = isWhite ? g.black : g.white;
 
                 return (
-                  <div key={idx} className="bg-slate-950 p-3 rounded-xl border border-slate-800/80 flex items-center justify-between">
+                  <div key={idx} style={{ background: '#020617', padding: '12px', borderRadius: '12px', border: '1px solid #1e293b', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <div>
-                      <span className="text-[10px] font-mono font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">
+                      <span style={{ fontSize: '10px', fontFamily: 'monospace', fontWeight: 'bold', color: '#fbbf24', background: 'rgba(245, 158, 11, 0.1)', padding: '2px 6px', borderRadius: '4px' }}>
                         {myData.result.toUpperCase()}
                       </span>
-                      <p className="text-xs font-bold text-white mt-1">vs {opponent.username} ({opponent.rating})</p>
+                      <p style={{ fontSize: '12px', fontWeight: 'bold', color: '#fff', margin: '4px 0 0 0' }}>vs {opponent.username} ({opponent.rating})</p>
                     </div>
                     <button
                       onClick={() => analyzeGame(g)}
-                      className="px-3 py-1.5 bg-amber-500 text-black font-bold text-xs rounded-lg"
+                      style={{ padding: '6px 12px', background: '#f59e0b', color: '#000', fontWeight: 'bold', fontSize: '12px', borderRadius: '8px', border: 'none', cursor: 'pointer' }}
                     >
                       Analisis ⚡
                     </button>
@@ -260,48 +260,48 @@ export default function Page() {
 
         {/* Progress */}
         {analyzing && (
-          <div className="bg-[#121621] border border-slate-800 rounded-2xl p-4 space-y-2 text-center">
-            <span className="text-xs font-mono text-slate-400">Menghitung Evaluasi... ({progress}%)</span>
-            <div className="w-full h-2 bg-slate-950 rounded-full overflow-hidden">
-              <div className="h-full bg-amber-500 transition-all duration-150" style={{ width: `${progress}%` }} />
+          <div style={{ background: '#121621', border: '1px solid #1e293b', borderRadius: '16px', padding: '16px', textAlign: 'center', marginBottom: '16px' }}>
+            <span style={{ fontSize: '12px', fontFamily: 'monospace', color: '#94a3b8', display: 'block', marginBottom: '8px' }}>Menghitung Evaluasi... ({progress}%)</span>
+            <div style={{ width: '100%', height: '8px', background: '#020617', borderRadius: '999px', overflow: 'hidden' }}>
+              <div style={{ height: '100%', background: '#f59e0b', width: `${progress}%`, transition: 'width 0.15s ease' }} />
             </div>
           </div>
         )}
 
         {/* Board & Accuracy */}
         {selectedGame && !analyzing && (
-          <div className="bg-[#121621] border border-slate-800 rounded-2xl p-4 space-y-4">
-            <button onClick={() => setSelectedGame(null)} className="text-xs text-amber-400 font-bold">
+          <div style={{ background: '#121621', border: '1px solid #1e293b', borderRadius: '16px', padding: '16px' }}>
+            <button onClick={() => setSelectedGame(null)} style={{ background: 'none', border: 'none', color: '#fbbf24', fontSize: '12px', fontWeight: 'bold', cursor: 'pointer', marginBottom: '16px', padding: 0 }}>
               ← Kembali ke daftar game
             </button>
 
-            <div className="grid grid-cols-2 gap-3 text-center">
-              <div className="bg-slate-950 p-3 rounded-xl border border-slate-800">
-                <span className="text-[10px] font-mono text-slate-500 block">AKURASI PUTIH</span>
-                <span className="text-xl font-black text-emerald-400">{accWhite}%</span>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', textAlign: 'center', marginBottom: '16px' }}>
+              <div style={{ background: '#020617', padding: '12px', borderRadius: '12px', border: '1px solid #1e293b' }}>
+                <span style={{ fontSize: '10px', fontFamily: 'monospace', color: '#64748b', display: 'block' }}>AKURASI PUTIH</span>
+                <span style={{ fontSize: '20px', fontWeight: 900, color: '#34d399' }}>{accWhite}%</span>
               </div>
-              <div className="bg-slate-950 p-3 rounded-xl border border-slate-800">
-                <span className="text-[10px] font-mono text-slate-500 block">AKURASI HITAM</span>
-                <span className="text-xl font-black text-emerald-400">{accBlack}%</span>
+              <div style={{ background: '#020617', padding: '12px', borderRadius: '12px', border: '1px solid #1e293b' }}>
+                <span style={{ fontSize: '10px', fontFamily: 'monospace', color: '#64748b', display: 'block' }}>AKURASI HITAM</span>
+                <span style={{ fontSize: '20px', fontWeight: 900, color: '#34d399' }}>{accBlack}%</span>
               </div>
             </div>
 
-            <div className="rounded-xl overflow-hidden border border-slate-800">
+            <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid #1e293b', marginBottom: '16px' }}>
               <Chessboard
                 position={reviewChess.fen()}
                 customSquareStyles={customSquareStyles}
               />
             </div>
 
-            <div className="flex gap-2">
-              <button onClick={() => goToMove(-1)} className="flex-1 py-2.5 bg-slate-800 rounded-xl flex items-center justify-center">
-                <RotateCcw className="w-4 h-4" />
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button onClick={() => goToMove(-1)} style={{ flex: 1, padding: '10px 0', background: '#1e293b', border: 'none', borderRadius: '12px', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <RotateCcw style={{ width: '16px', height: '16px' }} />
               </button>
-              <button onClick={() => goToMove(currentMoveIdx - 1)} className="flex-1 py-2.5 bg-slate-800 rounded-xl flex items-center justify-center">
-                <ChevronLeft className="w-4 h-4" />
+              <button onClick={() => goToMove(currentMoveIdx - 1)} style={{ flex: 1, padding: '10px 0', background: '#1e293b', border: 'none', borderRadius: '12px', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <ChevronLeft style={{ width: '16px', height: '16px' }} />
               </button>
-              <button onClick={() => goToMove(currentMoveIdx + 1)} className="flex-1 py-2.5 bg-slate-800 rounded-xl flex items-center justify-center">
-                <ChevronRight className="w-4 h-4" />
+              <button onClick={() => goToMove(currentMoveIdx + 1)} style={{ flex: 1, padding: '10px 0', background: '#1e293b', border: 'none', borderRadius: '12px', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <ChevronRight style={{ width: '16px', height: '16px' }} />
               </button>
             </div>
           </div>
