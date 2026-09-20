@@ -1,5 +1,5 @@
 {
-  "name": "chessigma-analyzer",
+  "name": "chessan",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,9 +19,6 @@
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@types/react": "^18.2.0",
-    "autoprefixer": "^10.4.17",
-    "postcss": "^8.4.33",
-    "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
   }
 }
